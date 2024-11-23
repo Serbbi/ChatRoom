@@ -4,48 +4,46 @@ import org.springframework.web.bind.annotation.*;
 import serb.digitalnation.Social.Room.model.Chat;
 import serb.digitalnation.Social.Room.model.User;
 import serb.digitalnation.Social.Room.requests.ChatRequest;
+import serb.digitalnation.Social.Room.services.ChatService;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
 public class ChatController {
-    Chat chat;
+    ChatService chatService;
+
+    public ChatController(ChatService chatService) {
+        this.chatService = chatService;
+    }
+
     @PostMapping("/chat")
     public Chat createChat(@RequestBody ChatRequest chatRequest) {
-        this.chat = new Chat(new User(chatRequest.getUserName()), chatRequest.getChatName());
-        System.out.println(this.chat.toString());
-        return this.chat;
+        return this.chatService.createChat(chatRequest);
     }
 
     @GetMapping("/chat/{id}")
     public Chat getChat(@PathVariable UUID id) {
-        return this.chat.getId().equals(id) ? this.chat : null;
+        return this.chatService.getChat(id);
     }
 
     @PutMapping("/chat/{id}/add/{userId}")
     public String addUserToChat(@PathVariable UUID id, @PathVariable UUID userId) {
-        if (this.chat.getId().equals(id)) {
-            this.chat.getUsers().add(new User("User" + userId));
-            return "User added to chat";
-        }
-        return "Chat not found";
+        return chatService.addUserToChat(id, userId);
     }
 
     @DeleteMapping("/chat/{id}")
     public String deleteChat(@PathVariable UUID id) {
-        if (this.chat.getId().equals(id)) {
-            this.chat = null;
-            return "Chat deleted";
-        }
-        return "Chat not found";
+        return chatService.deleteChat(id);
     }
 
     @DeleteMapping("/chat/{id}/remove/{userId}")
     public String removeUserFromChat(@PathVariable UUID id, @PathVariable UUID userId) {
-        if (this.chat.getId().equals(id)) {
-            this.chat.getUsers().removeIf(user -> user.getId().equals(userId));
-            return "User removed from chat";
-        }
-        return "Chat not found";
+        return chatService.removeUserFromChat(id, userId);
+    }
+
+    @GetMapping("/chats")
+    public List<Chat> getChats() {
+        return chatService.getChats();
     }
 }

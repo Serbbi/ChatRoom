@@ -1,13 +1,13 @@
 package serb.digitalnation.Social.Room.requests;
 
 import lombok.Getter;
-import serb.digitalnation.Social.Room.model.User;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Getter
 public class MessageRequest {
     private String content;
-    private User sender;
+    private UUID senderId;
     private LocalDateTime timestamp;
 }

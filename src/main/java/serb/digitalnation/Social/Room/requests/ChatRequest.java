@@ -5,5 +5,4 @@ import lombok.Getter;
 @Getter
 public class ChatRequest {
     private String chatName;
-    private String userName;
 }
