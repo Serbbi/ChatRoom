@@ -3,12 +3,10 @@ package serb.digitalnation.Social.Room.model;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import jakarta.persistence.Id;
 
 @Getter
 @Setter
@@ -20,13 +18,17 @@ public class Message {
     private String content;
     private UUID senderId;
     private LocalDateTime timestamp;
+    @ManyToOne
+    @JsonBackReference
+    private Chat chat;
 
     public Message() {}
 
-    public Message(String content, UUID senderId, LocalDateTime timestamp) {
+    public Message(String content, UUID senderId, LocalDateTime timestamp, Chat chat) {
         this.content = content;
         this.senderId = senderId;
         this.timestamp = timestamp;
+        this.chat = chat;
     }
 
     @Override

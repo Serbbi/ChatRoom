@@ -7,6 +7,7 @@ import serb.digitalnation.Social.Room.services.UserService;
 
 import java.util.UUID;
 
+@CrossOrigin
 @RestController
 public class UserController {
     private final UserService userService;
@@ -28,5 +29,10 @@ public class UserController {
     @GetMapping("/users")
     public Iterable<User> getUsers() {
         return userService.getUsers();
+    }
+
+    @DeleteMapping("/user/{id}")
+    public String deleteUser(@PathVariable UUID id) {
+        return userService.deleteUser(id);
     }
 }

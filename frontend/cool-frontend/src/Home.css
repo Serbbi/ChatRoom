@@ -1,0 +1,50 @@
+.home {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+}
+
+.title {
+
+}
+
+.content {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 0;
+    height: 100%;
+}
+
+.leftside {
+    background-color: #1a1a1a;
+    height: 100%;
+    width: 20%;
+}
+
+.rightside {
+    height: 100%;
+    width: 80%;
+    position: relative;
+}
+
+.chatlist {
+    list-style: none;
+}
+
+.chatitem {
+    border-bottom: 1px solid #333;
+    padding: 10px;
+    cursor: pointer;
+    font-family: 'Roboto', sans-serif;
+}
+
+.chatitem:hover {
+    background-color: #333;
+}

@@ -1,6 +1,7 @@
 package serb.digitalnation.Social.Room.services;
 
 import org.springframework.stereotype.Service;
+import serb.digitalnation.Social.Room.model.Chat;
 import serb.digitalnation.Social.Room.model.Message;
 import serb.digitalnation.Social.Room.repositories.MessageRepository;
 import serb.digitalnation.Social.Room.requests.MessageRequest;
@@ -17,7 +18,7 @@ public class MessageService {
         this.messageRepository = messageRepository;
     }
     public Message sendMessage(MessageRequest req) {
-        Message message = new Message(req.getContent(), req.getSenderId(), req.getTimestamp());
+        Message message = new Message(req.getContent(), req.getSenderId(), req.getTimestamp(), new Chat());
         System.out.println("Message sent: " + message.toString());
         return messageRepository.save(message);
     }

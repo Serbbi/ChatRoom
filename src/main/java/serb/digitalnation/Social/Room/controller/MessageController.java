@@ -17,10 +17,10 @@ public class MessageController {
         this.messageService = messageService;
     }
 
-    @PostMapping("/message")
-    public Message createMessage(@RequestBody MessageRequest messageRequest) {
-        return this.messageService.sendMessage(messageRequest);
-    }
+//    @PostMapping("/message")
+//    public Message createMessage(@RequestBody MessageRequest messageRequest) {
+//        return this.messageService.sendMessage(messageRequest);
+//    }
 
     @GetMapping("/message/{id}")
     public Message getMessage(@PathVariable UUID id) {

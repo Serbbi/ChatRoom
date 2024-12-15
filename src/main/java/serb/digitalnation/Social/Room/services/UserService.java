@@ -18,7 +18,6 @@ public class UserService {
 
     public User createUser(UserRequest userRequest) {
         User user = new User(userRequest.getName());
-        System.out.println(user);
         return userRepository.save(user);
     }
 
@@ -28,5 +27,10 @@ public class UserService {
 
     public List<User> getUsers() {
         return userRepository.findAll();
+    }
+
+    public String deleteUser(UUID id) {
+        userRepository.deleteById(id);
+        return "User deleted!";
     }
 }
